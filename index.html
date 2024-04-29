@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+    <title>Digital Clock</title>
+
+    <style>
+
+    body{
+        background: linear-gradient(90deg, #42afe2, #1f81b9);
+    }
+    h1{
+        color: rgb(21, 31, 163);
+        padding-bottom: 50px;
+        padding-top: 20px;
+        text-transform: uppercase;
+        text-align: center;
+        font-size: 40px;
+        text-shadow: black 1px 0px;
+    }
+
+    .time{
+        /* text-shadow: 5px 5px 5px #B4BEC9; */
+        font-weight: 700;
+    }
+
+    #words{
+        font-size: 20px;
+        /* text-shadow: 5px 5px 5px #B4BEC9; */
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+        font-weight: bold;
+
+    }
+
+
+    div span:first-of-type{
+        font-weight: 400;
+    }
+        .clock {
+    font-family: Arial, sans-serif;
+    font-size: 6em;
+    color: rgb(239, 240, 243);
+    background: rgb(9,89,121);
+background: linear-gradient(200deg, rgb(21, 31, 163) 49%, rgba(2,0,36,1) 49%, rgb(8, 163, 16) 49%);
+    padding: 40px;
+    /* border-radius: 50%; */
+    min-height: 25vh;
+    min-width: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    text-align: center;
+    margin: 0 auto; /* Center the clock */
+    /* box-shadow: 0 0 10px #B4BEC9; */
+    
+}
+
+/* 
+#hour, #minute, #second {
+    color: #000; Black text color */
+/* } */
+
+    </style>
+</head>
+<body>
+    <h1>Digital Clock</h1>
+    <div class="clock">
+        <div>
+            <span id="words">Hours</span>
+            <span class="time">00</span>
+        </div>
+        <div>
+            <span id="words">Minutes</span>
+            <span class="time">00</span>
+        </div>
+        <div>
+            <span id="words">Seconds</span>
+            <span class="time">00</span>
+
+        </div>
+
+        <!-- <div>
+            <span id="words">Milliseconds</span>
+            <span id="time">000</span>
+        </div> -->
+    </div>
+</body>
+<script>
+    const spans = document.getElementsByClassName('time')
+
+    const updateTime = () => {
+        const currentTime = new Date()
+
+        // const ms = currentTime.getMilliseconds();
+        const sec = currentTime.getSeconds();
+        const min = currentTime.getMinutes();
+        const hr = currentTime.getHours();
+
+        const hours = Math.floor(hr) < 10 ? '0' + Math.floor(hr) : Math.floor(hr)
+
+        const Minutes = Math.floor(min) < 10 ? '0' + Math.floor(min) : Math.floor(min)
+
+        const seconds = Math.floor(sec) < 10 ? '0' + Math.floor(sec) : Math.floor(sec)
+
+        // const milliseconds = math.floor(ms) < 10 ? '0' + Math.floor(ms) : Math.floor(ms)
+
+
+        spans[0].textContent = hours
+        spans[1].textContent = Minutes
+        spans[2].textContent = seconds
+        // spans[3].textContent = milliseconds
+
+        const time = setInterval(updateTime, 1000)
+
+    }
+
+    updateTime()
+</script>
+</html>

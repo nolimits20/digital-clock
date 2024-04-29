@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Digital Clock</title>
+<link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
+<style>
+/* Include the CSS styling here */
+/* Digital Clock CSS Styling */
+#clock {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Orbitron', sans-serif;
+  color: white;
+  background: linear-gradient(to bottom right, darkgreen, lightgreen);
+  padding: 20px;
+}
+
+.clock-section {
+  background: black;
+  padding: 10px;
+  margin: 0 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.clock-section span {
+  font-size: 2em; /* Adjust size as needed */
+}
+
+.clock-section label {
+  margin-top: 5px;
+  font-size: 0.8em; /* Adjust size as needed */
+  color: white;
+}
+
+#hours { border-bottom: 3px solid red; height: 50px; width: 70px; }
+#minutes { border-bottom: 3px solid orange; }
+#seconds { border-bottom: 3px solid blue; }
+#milliseconds { border-bottom: 3px solid green; }
+#ampm { background: blue; padding: 5px; }
+
+
+/* Add media queries as needed for responsiveness */
+
+
+</style>
+</head>
+<body>
+<div id="clock">
+  <div id="hours" class="clock-section">
+    <span>18</span>
+    <label style="color:red;">HOURS</label>
+  </div>
+  <div id="minutes" class="clock-section">
+    <span>09</span>
+    <label style="color:orange;">MINUTES</label>
+  </div>
+  <div id="seconds" class="clock-section">
+    <span>27</span>
+    <label style="color:blue;">SECONDS</label>
+  </div>
+  <div id="milliseconds" class="clock-section">
+    <span>873</span>
+    <label style="color:green;">MILLISECONDS</label>
+  </div>
+  <div id="ampm" class="clock-section">
+    <span>PM</span>
+  </div>
+</div>
+<script>
+// Include the JavaScript code here
+// Digital Clock JavaScript Code
+window.onload = function() {
+  // Function to update the time
+  function updateClock() {
+    var now = new Date();
+    var hours = now.getHours();
+    var minutes = now.getMinutes();
+    var seconds = now.getSeconds();
+    var milliseconds = now.getMilliseconds();
+    var ampm = hours >= 12 ? 'PM' : 'AM';
+
+    // Convert hours from 24-hour to 12-hour format and update AM/PM
+    hours = hours % 12;
+    hours = hours ? hours : 12; // the hour '0' should be '12'
+
+    // Pad single digits with a leading zero
+    hours = hours < 10 ? '0' + hours : hours;
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+    seconds = seconds < 10 ? '0' + seconds : seconds;
+
+    // Update the clock's text
+    var clockStr = hours + ':' + minutes + ':' + seconds + ':' + milliseconds + ' ' + ampm;
+    document.getElementById('clock').textContent = clockStr;
+  }
+
+  // Update the clock every 100 milliseconds to get the milliseconds effect
+  setInterval(updateClock, 100);
+};
+
+</script>
+</body>
+</html>
